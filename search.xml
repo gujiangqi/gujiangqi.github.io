@@ -8,7 +8,7 @@
       <link href="/2022/02/02/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/"/>
       <url>/2022/02/02/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/</url>
       
-        <content type="html"><![CDATA[<h1 id="子分级目录搭建"><a href="#子分级目录搭建" class="headerlink" title="子分级目录搭建"></a>子分级目录搭建</h1><p>下面这种书写方式不会同时属于多个分级目录，而是表示<strong>C#<strong>的</strong>博客搭建</strong>的子目录</p><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">categories:</span><br><span class="line"><span class="bullet">-</span> 博客搭建</span><br><span class="line"><span class="bullet">-</span> C#</span><br></pre></td></tr></table></figure><p>效果图如下：</p><p><img src="https://gitee.com/gujiangqi/pic_bed/raw/master/Blog/image-20220204233436788.png" alt="image-20220204233436788"></p>]]></content>
+        <content type="html"><![CDATA[<h1 id="子分级目录搭建"><a href="#子分级目录搭建" class="headerlink" title="子分级目录搭建"></a>子分级目录搭建</h1><p>下面这种书写方式不会同时属于多个分级目录，而是表示<strong>C#<strong>的</strong>博客搭建</strong>的子目录</p><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">categories:</span><br><span class="line"><span class="bullet">-</span> 博客搭建</span><br><span class="line"><span class="bullet">-</span> C#</span><br></pre></td></tr></table></figure><p>效果图如下：</p><p><img src="https://gitee.com/gujiangqi/pic_bed/raw/master/Blog/image-20220204233436788.png" alt="image-20220204233436788"></p><h1 id="配置本地搜索"><a href="#配置本地搜索" class="headerlink" title="配置本地搜索"></a>配置本地搜索</h1><p>安装本地搜索软件包，博客根目录地址下安装</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-generator-search --save</span><br></pre></td></tr></table></figure><p>根目录配置文件配置如下内容（<strong>与官网配置文件不一样</strong>）</p><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">search:</span></span><br><span class="line">  <span class="attr">path:</span> <span class="string">search.xml</span></span><br><span class="line">  <span class="attr">field:</span> <span class="string">post</span></span><br><span class="line">  <span class="attr">format:</span> <span class="string">html</span></span><br><span class="line">  <span class="attr">limit:</span> <span class="number">10000</span></span><br></pre></td></tr></table></figure><p>主题配置文件打开<strong>本地搜索开关</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># Local search</span><br><span class="line">local_search:</span><br><span class="line">  enable: true</span><br></pre></td></tr></table></figure>]]></content>
       
       
       <categories>
@@ -31,11 +31,11 @@
     
     
     <entry>
-      <title>代码演示</title>
-      <link href="/2022/02/02/%E4%BB%A3%E7%A0%81%E5%9D%97%E6%BC%94%E7%A4%BA/%E6%BC%94%E7%A4%BA/"/>
-      <url>/2022/02/02/%E4%BB%A3%E7%A0%81%E5%9D%97%E6%BC%94%E7%A4%BA/%E6%BC%94%E7%A4%BA/</url>
+      <title>文本展示</title>
+      <link href="/2022/02/02/%E6%96%87%E6%A1%A3%E6%BC%94%E7%A4%BA/text/"/>
+      <url>/2022/02/02/%E6%96%87%E6%A1%A3%E6%BC%94%E7%A4%BA/text/</url>
       
-        <content type="html"><![CDATA[<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="keyword">static</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;hello world&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+        <content type="html"><![CDATA[<h1 id="1级标题"><a href="#1级标题" class="headerlink" title="1级标题"></a>1级标题</h1><p>哈哈哈哈</p><h2 id="2级标题"><a href="#2级标题" class="headerlink" title="2级标题"></a>2级标题</h2>]]></content>
       
       
       
@@ -44,11 +44,11 @@
     
     
     <entry>
-      <title>文本展示</title>
-      <link href="/2022/02/02/%E6%96%87%E6%A1%A3%E6%BC%94%E7%A4%BA/text/"/>
-      <url>/2022/02/02/%E6%96%87%E6%A1%A3%E6%BC%94%E7%A4%BA/text/</url>
+      <title>代码演示</title>
+      <link href="/2022/02/02/%E4%BB%A3%E7%A0%81%E5%9D%97%E6%BC%94%E7%A4%BA/%E6%BC%94%E7%A4%BA/"/>
+      <url>/2022/02/02/%E4%BB%A3%E7%A0%81%E5%9D%97%E6%BC%94%E7%A4%BA/%E6%BC%94%E7%A4%BA/</url>
       
-        <content type="html"><![CDATA[<h1 id="1级标题"><a href="#1级标题" class="headerlink" title="1级标题"></a>1级标题</h1><p>哈哈哈哈</p><h2 id="2级标题"><a href="#2级标题" class="headerlink" title="2级标题"></a>2级标题</h2>]]></content>
+        <content type="html"><![CDATA[<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="keyword">static</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;hello world&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
       
       
       
