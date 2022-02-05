@@ -4,11 +4,38 @@
   
     
     <entry>
+      <title>ArtiTalk说说插件搭建</title>
+      <link href="/2022/02/05/%E8%AF%B4%E8%AF%B4%E9%85%8D%E7%BD%AE/"/>
+      <url>/2022/02/05/%E8%AF%B4%E8%AF%B4%E9%85%8D%E7%BD%AE/</url>
+      
+        <content type="html"><![CDATA[<p>Butterfly主题地址：<a href="https://github.com/jerryc127/butterfly-plugins/tree/main/hexo-butterfly-artitalk">Hexo-Butterfly</a></p><p>说说插件地址：<a href="https://github.com/jerryc127/butterfly-plugins/tree/main/hexo-butterfly-artitalk">butterfly-plugins</a></p><p>说说文档地址：<a href="https://artitalk.js.org/">Artitalk</a></p><h1 id="下载插件"><a href="#下载插件" class="headerlink" title="下载插件"></a>下载插件</h1><p>首先添加功能插件，在 Hexo 项目根目录下执行该命令</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-butterfly-artitalk</span><br></pre></td></tr></table></figure><ul><li>步骤：</li><li>右键Hexo 项目根目录空白处</li><li>选择”Git Bash”</li><li>粘贴命令回车等待即可</li></ul><p>或者</p><ul><li>Bash进入Blog根目录</li><li>执行上面命令</li></ul><p><strong>配置LeanCloud</strong></p><p><strong>注册账号并验证</strong></p><p>打开<a href="https://leancloud.app/"><strong>LeanCloud国际官网</strong></a>，注册后先<strong>验证手机号</strong>以及<strong>邮箱激活</strong></p><h1 id="创建应用"><a href="#创建应用" class="headerlink" title="创建应用"></a>创建应用</h1><p>找到应用并创建</p><p><img src="https://gitee.com/gujiangqi/pic_bed/raw/master/Blog/image-20220205095547118.png" alt="image-20220205095547118"></p><p>接着在结构化数据中创建 class，命名为 <strong>shuoshuo</strong> （一定要注意大小写）</p><p>​    <img src="https://gitee.com/gujiangqi/pic_bed/raw/master/Blog/image-20220205095558936.png" alt="image-20220205095558936"></p><h1 id="创建用户"><a href="#创建用户" class="headerlink" title="创建用户"></a>创建用户</h1><p>在新建的应用中找到 内建账户 - 用户管理，点击添加用户，输入想用的用户名及密码</p><p><img src="https://gitee.com/gujiangqi/pic_bed/raw/master/Blog/image-20220205095610881.png" alt="image-20220205095610881"></p><h1 id="设置限权"><a href="#设置限权" class="headerlink" title="设置限权"></a>设置限权</h1><p>回到结构化数据中，点击 class 下的 shuoshuo；找到权限，在 Class 访问权限中将 add_fields 以及 create 权限设置为指定用户，输入你刚才输入的用户名会自动匹配。为了安全起见，将 delete 和 update 也设置为跟它们一样的权限</p><p><img src="https://gitee.com/gujiangqi/pic_bed/raw/master/Blog/image-20220205095630721.png" alt="image-20220205095630721"></p><h1 id="创建class-atComment"><a href="#创建class-atComment" class="headerlink" title="创建class-atComment"></a>创建class-atComment</h1><p>然后新建一个名为 atComment 的 class，权限什么的使用默认的即可</p><h1 id="设置说说头像"><a href="#设置说说头像" class="headerlink" title="设置说说头像"></a>设置说说头像</h1><p>点击 class 下的 _User 添加<strong>列</strong>，列名称为 <strong>img</strong>，默认值填上你这个账号想要用的发布说说的头像url，这一项不进行配置，说说头像会显示为默认头像 —— Artitalk 的 logo</p><p><img src="https://gitee.com/gujiangqi/pic_bed/raw/master/Blog/image-20220205095639691.png" alt="image-20220205095639691"></p><h1 id="记录Keys"><a href="#记录Keys" class="headerlink" title="记录Keys"></a>记录Keys</h1><p>在左侧菜单栏中找到设置 - 应用凭证，记下来 AppID 和 AppKey ，一会要用到</p><p><img src="https://gitee.com/gujiangqi/pic_bed/raw/master/Blog/image-20220205095649846.png" alt="image-20220205095649846"></p><h1 id="修改限权"><a href="#修改限权" class="headerlink" title="修改限权"></a>修改限权</h1><p>最后将 _User 中的权限全部调为指定用户，或者数据创建者，为了保证不被篡改用户数据以达到强制发布说说</p><p>❗ <strong>关于设置权限的这几步</strong></p><p><strong>这几步一定要设置好，才可以保证不被 “闲人” 破解发布说说的验证</strong></p><p><strong>添加修改配置</strong></p><p>打开Hexo 项目根目录下的 “_config.yml” 文件中末端添加以下配置</p><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Artitalk</span></span><br><span class="line"><span class="comment"># see https://artitalk.js.org/</span></span><br><span class="line"><span class="comment"># &quot;./source/artitalk/index.html&quot;</span></span><br><span class="line"><span class="attr">artitalk:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">appId:</span> <span class="string">wws10HiQbQVBV0fdmO2jIVNR-MdYXbMMI</span></span><br><span class="line">  <span class="attr">appKey:</span> <span class="string">tgGXYP2qvBVCb3AbyL5ILnTY</span></span><br><span class="line">  <span class="attr">path:</span>  </span><br><span class="line">  <span class="attr">js:</span></span><br><span class="line">  <span class="attr">option:</span> </span><br><span class="line">  <span class="attr">front_matter:</span></span><br></pre></td></tr></table></figure><p>注：前面记录下来的 <strong>appId</strong> 和 <strong>appKey</strong> 填入到对应处即可</p><p>   <img src="https://gitee.com/gujiangqi/pic_bed/raw/master/Blog/image-20220205095756064.png" alt="image-20220205095756064"></p><p><img src="https://gitee.com/gujiangqi/pic_bed/raw/master/Blog/image-20220205095807102.png" alt="image-20220205095807102"></p><p><strong>配置含义</strong></p><ul><li>appId:【必须】LeanCloud创建的应用中的AppID</li><li>appKey: 【必须】LeanCloud创建的应用中的AppKEY</li><li>path: 【可选】Artitalk的路径名称（默认为artitalk，生成的页面为/artitalk/index.html）</li><li>js: 【可选】更换Artitalk的js CDN（默认为：<a href="https://cdn.jsdelivr.net/npm/artitalk%EF%BC%89">https://cdn.jsdelivr.net/npm/artitalk）</a></li><li>option: 【可选】Artitalk需要的额外配置</li><li>front_matter: 【可选】Artitalk页面的front_matter配置</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 博客搭建 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> hexo </tag>
+            
+            <tag> butterfly - ArtiTalk </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Butterfly主题搭建</title>
       <link href="/2022/02/02/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/"/>
       <url>/2022/02/02/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/</url>
       
-        <content type="html"><![CDATA[<h1 id="子分级目录搭建"><a href="#子分级目录搭建" class="headerlink" title="子分级目录搭建"></a>子分级目录搭建</h1><p>下面这种书写方式不会同时属于多个分级目录，而是表示<strong>C#<strong>的</strong>博客搭建</strong>的子目录</p><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">categories:</span><br><span class="line"><span class="bullet">-</span> 博客搭建</span><br><span class="line"><span class="bullet">-</span> C#</span><br></pre></td></tr></table></figure><p>效果图如下：</p><p><img src="https://gitee.com/gujiangqi/pic_bed/raw/master/Blog/image-20220204233436788.png" alt="image-20220204233436788"></p><h1 id="配置本地搜索"><a href="#配置本地搜索" class="headerlink" title="配置本地搜索"></a>配置本地搜索</h1><p>安装本地搜索软件包，博客根目录地址下安装</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-generator-search --save</span><br></pre></td></tr></table></figure><p>根目录配置文件配置如下内容（<strong>与官网配置文件不一样</strong>）</p><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">search:</span></span><br><span class="line">  <span class="attr">path:</span> <span class="string">search.xml</span></span><br><span class="line">  <span class="attr">field:</span> <span class="string">post</span></span><br><span class="line">  <span class="attr">format:</span> <span class="string">html</span></span><br><span class="line">  <span class="attr">limit:</span> <span class="number">10000</span></span><br></pre></td></tr></table></figure><p>主题配置文件打开<strong>本地搜索开关</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># Local search</span><br><span class="line">local_search:</span><br><span class="line">  enable: true</span><br></pre></td></tr></table></figure>]]></content>
+        <content type="html"><![CDATA[<h1 id="子分级目录搭建"><a href="#子分级目录搭建" class="headerlink" title="子分级目录搭建"></a>子分级目录搭建</h1><p>下面这种书写方式不会同时属于多个分级目录，而是表示<strong>C#<strong>的</strong>博客搭建</strong>的子目录</p><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">categories:</span><br><span class="line"><span class="bullet">-</span> 博客搭建</span><br><span class="line"><span class="bullet">-</span> C#</span><br></pre></td></tr></table></figure><p>效果图如下：</p><p><img src="https://gitee.com/gujiangqi/pic_bed/raw/master/Blog/image-20220204233436788.png" alt="image-20220204233436788"></p><h1 id="配置本地搜索"><a href="#配置本地搜索" class="headerlink" title="配置本地搜索"></a>配置本地搜索</h1><p>安装本地搜索软件包，博客根目录地址下安装</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-generator-search --save</span><br></pre></td></tr></table></figure><p>根目录配置文件配置如下内容（<strong>与官网配置文件不一样</strong>）</p><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">search:</span></span><br><span class="line">  <span class="attr">path:</span> <span class="string">search.xml</span></span><br><span class="line">  <span class="attr">field:</span> <span class="string">post</span></span><br><span class="line">  <span class="attr">format:</span> <span class="string">html</span></span><br><span class="line">  <span class="attr">limit:</span> <span class="number">10000</span></span><br></pre></td></tr></table></figure><p>主题配置文件打开<strong>本地搜索开关</strong></p><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Local search</span></span><br><span class="line"><span class="attr">local_search:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure><p>效果图显示如下</p><p><img src="https://gitee.com/gujiangqi/pic_bed/raw/master/Blog/image-20220204235121521.png" alt="image-20220204235121521"></p>]]></content>
       
       
       <categories>
@@ -31,11 +58,11 @@
     
     
     <entry>
-      <title>文本展示</title>
-      <link href="/2022/02/02/%E6%96%87%E6%A1%A3%E6%BC%94%E7%A4%BA/text/"/>
-      <url>/2022/02/02/%E6%96%87%E6%A1%A3%E6%BC%94%E7%A4%BA/text/</url>
+      <title>代码演示</title>
+      <link href="/2022/02/02/%E4%BB%A3%E7%A0%81%E5%9D%97%E6%BC%94%E7%A4%BA/%E6%BC%94%E7%A4%BA/"/>
+      <url>/2022/02/02/%E4%BB%A3%E7%A0%81%E5%9D%97%E6%BC%94%E7%A4%BA/%E6%BC%94%E7%A4%BA/</url>
       
-        <content type="html"><![CDATA[<h1 id="1级标题"><a href="#1级标题" class="headerlink" title="1级标题"></a>1级标题</h1><p>哈哈哈哈</p><h2 id="2级标题"><a href="#2级标题" class="headerlink" title="2级标题"></a>2级标题</h2>]]></content>
+        <content type="html"><![CDATA[<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="keyword">static</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;hello world&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
       
       
       
@@ -44,11 +71,11 @@
     
     
     <entry>
-      <title>代码演示</title>
-      <link href="/2022/02/02/%E4%BB%A3%E7%A0%81%E5%9D%97%E6%BC%94%E7%A4%BA/%E6%BC%94%E7%A4%BA/"/>
-      <url>/2022/02/02/%E4%BB%A3%E7%A0%81%E5%9D%97%E6%BC%94%E7%A4%BA/%E6%BC%94%E7%A4%BA/</url>
+      <title>文本展示</title>
+      <link href="/2022/02/02/%E6%96%87%E6%A1%A3%E6%BC%94%E7%A4%BA/text/"/>
+      <url>/2022/02/02/%E6%96%87%E6%A1%A3%E6%BC%94%E7%A4%BA/text/</url>
       
-        <content type="html"><![CDATA[<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="keyword">static</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;hello world&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+        <content type="html"><![CDATA[<h1 id="1级标题"><a href="#1级标题" class="headerlink" title="1级标题"></a>1级标题</h1><p>哈哈哈哈</p><h2 id="2级标题"><a href="#2级标题" class="headerlink" title="2级标题"></a>2级标题</h2>]]></content>
       
       
       
